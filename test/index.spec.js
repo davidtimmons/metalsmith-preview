@@ -3,13 +3,13 @@
  */
 
 const { expect } = require('chai');
-const Preview = require('..');
+const preview = require('../lib/index');
 
 
 ///////////
 // TESTS //
 ///////////
 
-describe('metalsmith-preview', () => {
+describe('index.js', () => {
     it();
 });

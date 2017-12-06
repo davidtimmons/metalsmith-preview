@@ -6,7 +6,6 @@
   "repository": "https://github.com/davidtimmons/metalsmith-preview.git",
   "author": "David Timmons <github@timmons.io> (http://david.timmons.io)",
   "license": "MIT",
-  "private": false,
   "engines": {
     "node": ">=6.4.0"
   },
@@ -20,8 +19,8 @@
   "devDependencies": {
     "chai": "4.x",
     "eslint": "4.x",
-    "eslint-config-airbnb-base": "^12.1.0",
-    "eslint-plugin-import": "^2.8.0",
+    "eslint-config-airbnb-base": "12.1.x",
+    "eslint-plugin-import": "2.8.x",
     "metalsmith": "2.x",
     "mocha": "4.x"
   }

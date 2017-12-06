@@ -1,3 +1,8 @@
+/**
+ * Linting rules extend and modify the Airbnb style guide.
+ * See: https://github.com/airbnb/javascript
+ */
+ 
 {
     "extends": "airbnb-base",
     "plugins": ["import"],
@@ -7,21 +12,47 @@
         "node": true
     },
     "rules": {
+        "array-bracket-spacing": ["off"], // Requires a missing option for my preferred style.
         "comma-dangle": ["error", {
-            "arrays": "always-multiline",
+            "arrays": "never", // Supports comma-first rule with multiline arrays.
             "objects": "always-multiline",
             "imports": "always-multiline",
             "exports": "always-multiline",
             "functions": "never"
         }],
+        "comma-style": ["error", "last", { "exceptions": { "ArrayExpression": true } }],
         "func-names": ["error", "as-needed"],
         "func-style": ["warn", "declaration", { "allowArrowFunctions": true }],
-        "indent": ["error", 4],
-        "no-nested-ternary": ["warn"],
+        "indent": ["off"], // Requires a missing option for my preferred style.
+        "no-bitwise": ["error", { "allow": ["~"] }],
+        "no-nested-ternary": ["off"], // Requires a missing option for my preferred style.
+        "no-param-reassign": ["error", { "props": false }],
         "no-underscore-dangle": ["off"],
         "no-undef": ["warn"],
+        "no-unused-vars": ["error", {
+            "args": "after-used",
+            "argsIgnorePattern" : "^_$",
+            "vars": "all",
+            "ignoreRestSiblings": true
+        }],
+        "no-use-before-define": ["error", {
+            "functions": false,
+            "classes": true,
+            "variables": true
+        }],
         "object-shorthand": ["off", "methods"],
-        "spaced-comment": ["error", "always", { "exceptions": ["/"] }],
+        "prefer-const": ["error", { "destructuring": "all", "ignoreReadBeforeAssign": true }],
+        "spaced-comment": ["error", "always", {
+            "line": {
+                "exceptions": ["-", "+", "/"],
+                "markers": ["=", "!"] // space here to support sprockets directives
+            },
+            "block": {
+                "exceptions": ["-", "+"],
+                "markers": ["=", "!"], // space here to support sprockets directives
+                "balanced": true
+            }
+        }],
         "import/exports-last": ["error"],
         "import/newline-after-import": ["error", { "count": 2 }],
         "import/no-named-as-default": ["warn"],
