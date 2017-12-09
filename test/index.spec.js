@@ -11,5 +11,4 @@ const preview = require('../lib/index');
 ///////////
 
 describe('index.js', () => {
-    it();
 });

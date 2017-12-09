@@ -27,6 +27,7 @@
         "no-bitwise": ["error", { "allow": ["~"] }],
         "no-nested-ternary": ["off"], // Requires a missing option for my preferred style.
         "no-param-reassign": ["error", { "props": false }],
+        "no-plusplus": ["error", { "allowForLoopAfterthoughts": true }],
         "no-underscore-dangle": ["off"],
         "no-undef": ["warn"],
         "no-unused-vars": ["error", {
@@ -40,7 +41,9 @@
             "classes": true,
             "variables": true
         }],
-        "object-shorthand": ["off", "methods"],
+        "object-shorthand": ["error", "properties", {
+            "avoidQuotes": true
+        }],
         "prefer-const": ["error", { "destructuring": "all", "ignoreReadBeforeAssign": true }],
         "spaced-comment": ["error", "always", {
             "line": {

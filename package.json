@@ -22,6 +22,8 @@
     "eslint-config-airbnb-base": "12.1.x",
     "eslint-plugin-import": "2.8.x",
     "metalsmith": "2.x",
-    "mocha": "4.x"
+    "mocha": "4.x",
+    "rewire": "3.x",
+    "sinon": "4.x"
   }
 }
