@@ -7,26 +7,150 @@
 const { expect } = require('chai');
 const Rewire = require('rewire');
 const Sinon = require('sinon'); // eslint-disable-line
-const Helpers = Rewire('../lib/helpers');
+const Preview = Rewire('../lib/preview');
 const {
+    attachPreview,
+    choosePreviewFunction,
     createCharacterPreview,
     createMarkerPreview,
     createWordPreview,
-} = Helpers;
+} = Preview;
 
 
 ///////////
 // TESTS //
 ///////////
 
-describe('helpers.js', () => {
+describe('preview.js', () => {
+    context('attachPreview', () => {
+        const opts = Object.freeze({
+            key: 'preview',
+            ignoreExistingKey: false,
+            continueIndicator: '...',
+        });
+        const contentB = '  This is more text in a buffer.  ';
+        let files;
+
+        beforeEach('reset files object', () => {
+            files = Object.freeze({
+                a: { preview: '', contents: Buffer.from('This is text in a buffer.') },
+                b: { contents: Buffer.from(contentB) },
+                c: { contents: 'This is a test string.' },
+            });
+        });
+
+        it('should do nothing if a preview key exists unless overwriting an existing key', () => {
+            const filePath01 = 'a';
+            const _opts01 = { ...opts };
+            const stub01 = Sinon.stub().returns(files[filePath01]);
+            attachPreview(stub01, _opts01, files, filePath01);
+            expect(stub01.callCount).to.equal(0);
+
+            const filePath02 = 'a';
+            const _opts02 = { ..._opts01, ignoreExistingKey: true };
+            const stub02 = Sinon.stub().returns(files[filePath02]);
+            attachPreview(stub02, _opts02, files, filePath02);
+            expect(stub02.callCount).to.equal(1);
+        });
+
+        it('should add a preview if missing a preview key', () => {
+            const filePath = 'b';
+            const _opts = { ...opts };
+            const stub = Sinon.stub().returns(files[filePath]);
+            attachPreview(stub, _opts, files, filePath);
+            expect(stub.callCount).to.equal(1);
+        });
+
+        it('should do nothing if the file "contents" value is not a Buffer', () => {
+            const filePath = 'c';
+            const _opts = { ...opts };
+            const stub = Sinon.stub().returns(files[filePath]);
+            attachPreview(stub, _opts, files, filePath);
+            expect(stub.callCount).to.equal(0);
+        });
+
+        it('should not trim the preview when that option is falsey', () => {
+            const stub = Sinon.stub().returns({ preview: contentB, contents: files.b.contents });
+            attachPreview(stub, { ...opts }, files, 'b');
+            expect(files.b.preview).to.equal(contentB + opts.continueIndicator);
+        });
+
+        it('should trim the preview when that option is truthy', () => {
+            const stub = Sinon.stub().returns({ preview: contentB, contents: files.b.contents });
+            attachPreview(stub, { ...opts, trim: true }, files, 'b');
+            expect(files.b.preview).to.equal(contentB.trim() + opts.continueIndicator);
+        });
+
+        it('should attach the "contents" returned from the preview function', () => {
+            // See: https://nodejs.org/api/buffer.html
+            const { contents } = files.b;
+            const stub = Sinon.stub().returns({ contents });
+            attachPreview(stub, { ...opts }, files, 'b');
+            expect(files.b.contents.compare(contents)).to.equal(0);
+        });
+    });
+
+    context('choosePreviewFunction', () => {
+        const opts = Object.freeze({
+            words: 0,
+            characters: 0,
+            continueIndicator: '...',
+            marker: {
+                start: '',
+                end: '',
+            },
+        });
+
+        it('should return a preview function that creates an empty preview', () => {
+            const result = choosePreviewFunction(opts)();
+            expect(result).to.be.empty;
+        });
+
+        it('should return a preview function that creates a word preview', () => {
+            const _opts = { ...opts, words: 5 };
+            const result = choosePreviewFunction(_opts);
+            expect(result.name).to.equal('bound createWordPreview');
+        });
+
+        it('should return a preview function that creates a character preview', () => {
+            const _opts = { ...opts, characters: 5 };
+            const result = choosePreviewFunction(_opts);
+            expect(result.name).to.equal('bound createCharacterPreview');
+        });
+
+        it('should return a preview function that creates a marker preview', () => {
+            const _opts = { ...opts, marker: { start: '{{ start }}' } };
+            const result = choosePreviewFunction(_opts);
+            expect(result.name).to.equal('bound createMarkerPreview');
+        });
+
+        it('should return a preview function based on a specific order', () => {
+            const _opts01 = {
+                ...opts,
+                words: 5,
+                characters: 5,
+                marker: { start: '{{ start }}' },
+            };
+            const result01 = choosePreviewFunction(_opts01);
+            expect(result01.name).to.equal('bound createWordPreview');
+
+            const _opts02 = { ..._opts01, words: 0 };
+            const result02 = choosePreviewFunction(_opts02);
+            expect(result02.name).to.equal('bound createCharacterPreview');
+
+            const _opts03 = { ..._opts01, words: 0, characters: 0 };
+            const result03 = choosePreviewFunction(_opts03);
+            expect(result03.name).to.equal('bound createMarkerPreview');
+        });
+    });
+
     context('createCharacterPreview()', () => {
         const fileData = Object.freeze({
             contents: Buffer.from('This is test content.'),
         });
 
         beforeEach('stub the createWordPreview() function', () => {
-            Helpers.__set__('createWordPreview', Sinon.stub().returns(
+            Preview.__set__('createWordPreview', Sinon.stub().returns(
                 Object.freeze({
                     contents: fileData.contents,
                     preview: 'This is a test preview.',
@@ -35,7 +159,7 @@ describe('helpers.js', () => {
         });
 
         after('reset the createWordPreview() function', () => {
-            Helpers.__set__('createWordPreview', createWordPreview);
+            Preview.__set__('createWordPreview', createWordPreview);
         });
 
         it('should fail if argument "charCount" is not a positive integer', () => {
@@ -53,13 +177,13 @@ describe('helpers.js', () => {
         });
 
         it('should call the createWordPreview() function to generate a charcter preview', () => {
-            const stub = Helpers.__get__('createWordPreview');
+            const stub = Preview.__get__('createWordPreview');
             createCharacterPreview(1);
             expect(stub.calledOnce).to.be.true;
         });
 
         it('should pass through arguments "strip" and "fileData" without mutation', () => {
-            const stub = Helpers.__get__('createWordPreview');
+            const stub = Preview.__get__('createWordPreview');
             const strip = '!@#$%^&*()_+';
             expect(_ => createCharacterPreview(1, strip, fileData)).to.not.throw();
             expect(stub.args[0][1]).to.equal(strip);
@@ -67,7 +191,7 @@ describe('helpers.js', () => {
         });
 
         it('should create a word estimate by halving the character count and rounding up', () => {
-            const stub = Helpers.__get__('createWordPreview');
+            const stub = Preview.__get__('createWordPreview');
             for (let i = 1; i <= 10; i++) {
                 createCharacterPreview(i);
                 expect(stub.args[i - 1][0]).to.equal(Math.ceil(i / 2));
