@@ -75,9 +75,9 @@ describe('preview.js', () => {
             expect(files.b.preview).to.equal(contentB + opts.continueIndicator);
         });
 
-        it('should trim the preview when that option is truthy', () => {
+        it('should trim the character preview when the "trim" option is truthy', () => {
             const stub = Sinon.stub().returns({ preview: contentB, contents: files.b.contents });
-            attachPreview(stub, { ...opts, trim: true }, files, 'b');
+            attachPreview(stub, { ...opts, characters: { trim: true } }, files, 'b');
             expect(files.b.preview).to.equal(contentB.trim() + opts.continueIndicator);
         });
 
@@ -112,8 +112,14 @@ describe('preview.js', () => {
             expect(result.name).to.equal('bound createWordPreview');
         });
 
-        it('should return a preview function that creates a character preview', () => {
+        it('should return a preview function that creates a character preview from a number', () => {
             const _opts = { ...opts, characters: 5 };
+            const result = choosePreviewFunction(_opts);
+            expect(result.name).to.equal('bound createCharacterPreview');
+        });
+
+        it('should return a preview function that creates a character preview from an object', () => {
+            const _opts = { ...opts, characters: { count: 5 } };
             const result = choosePreviewFunction(_opts);
             expect(result.name).to.equal('bound createCharacterPreview');
         });

@@ -16,7 +16,6 @@ describe('metalsmith-preview', () => {
         ignoreExisting: true,
         continueIndicator: '...',
         strip: '',
-        trim: true,
     });
 
     it('should build a word preview', (done) => {
@@ -35,11 +34,30 @@ describe('metalsmith-preview', () => {
             });
     });
 
-    it('should build a character preview', (done) => {
+    it('should build a character preview from a number', (done) => {
         Metalsmith('test/fixtures/characters')
             .use(preview({
                 ...opts,
-                characters: 14,
+                characters: 15,
+            }))
+            .build(function(err, files) {  // eslint-disable-line
+                if (err) return done(err);
+                Object.keys(files).forEach((file) => {
+                    const { preview: filePreview } = files[file];
+                    expect(filePreview).to.equal(`Lorem ipsum ${opts.continueIndicator}`);
+                });
+                done();
+            });
+    });
+
+    it('should build a character preview from an object', (done) => {
+        Metalsmith('test/fixtures/characters')
+            .use(preview({
+                ...opts,
+                characters: {
+                    count: 15,
+                    trim: true,
+                },
             }))
             .build(function(err, files) {  // eslint-disable-line
                 if (err) return done(err);

@@ -77,8 +77,14 @@ describe('index.js', () => {
 
         it('should enforce types for all plugin configuration options', () => {
             const stub = plugin.__get__('_setArgDefaults');
+
+            // Trigger the default logic.
             plugin();
-            expect(stub.callCount).to.equal(11);
+            expect(stub.callCount).to.equal(10);
+
+            // Trigger the alternate character preview logic.
+            plugin({ characters: {} });
+            expect(stub.callCount - 10).to.equal(11);
         });
 
         it('should do nothing if the file matching pattern produces no matches', () => {
