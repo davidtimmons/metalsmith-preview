@@ -107,7 +107,7 @@ describe('helpers.js', () => {
     context('createMarkerPreview()', () => {
         const marker01 = '{ markerStart }';
         const marker02 = '{ markerEnd }';
-        const previewGoal = ' Gotham City ';
+        const previewGoal = 'Gotham City';
         const fileData = Object.freeze({
             contents: Buffer.from(`Did you know${marker01}${previewGoal}${marker02}needs Batman?`),
         });
@@ -186,7 +186,7 @@ describe('helpers.js', () => {
         });
 
         it('should create a preview and remove the ending marker when found', () => {
-            const _previewGoal = 'Did you know ';
+            const _previewGoal = 'Did you know';
             const _fileData = Object.freeze({
                 contents: Buffer.from(`Did you know ${marker02}Gotham City needs Batman?`),
             });
@@ -201,7 +201,7 @@ describe('helpers.js', () => {
                 contents: Buffer.from(`Did% you_ know! ${marker02}Gotham City needs Batman?`),
             });
 
-            const previewGoal01 = 'Did you know ';
+            const previewGoal01 = 'Did you know';
             const strip01 = /%|_|!/g;
             const { preview: preview01, contents: contents01 } =
                 createMarkerPreview(undefined, marker02, strip01, _fileData);
@@ -215,13 +215,27 @@ describe('helpers.js', () => {
                 contents: Buffer.from(`Did% you_ know! ${marker02}Gotham City needs Batman?`),
             });
 
-            const previewGoal02 = 'Did know! ';
+            const previewGoal02 = 'Did know!';
             const strip02 = '% you_';
             const { preview: preview02, contents: contents02 } =
                 createMarkerPreview(undefined, marker02, strip02, _fileData);
 
             expect(preview02).to.equal(previewGoal02);
             expect(contents02.toString()).to.have.string(strip02);
+        });
+
+        it('should split the source content on common whitespace characters', () => {
+            const _previewGoal = 'know Gotham City needs Batman?';
+            const _fileData = Object.freeze({
+                contents: Buffer.from(`Did you${marker01}
+                
+                know
+                    Gotham City
+                
+                needs Batman?`),
+            });
+            const { preview } = createMarkerPreview(marker01, undefined, undefined, _fileData);
+            expect(preview).to.equal(_previewGoal);
         });
     });
 
