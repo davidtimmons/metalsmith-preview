@@ -6,6 +6,7 @@
 
 const { expect } = require('chai');
 const Metalsmith = require('metalsmith');
+const debug = require('metalsmith-debug');
 const preview = require('..');
 
 
@@ -24,6 +25,7 @@ describe('metalsmith-preview', () => {
                 ...opts,
                 words: 3,
             }))
+            .use(debug())
             .build(function(err, files) {  // eslint-disable-line
                 if (err) return done(err);
                 Object.keys(files).forEach((file) => {
@@ -40,6 +42,7 @@ describe('metalsmith-preview', () => {
                 ...opts,
                 characters: 15,
             }))
+            .use(debug())
             .build(function(err, files) {  // eslint-disable-line
                 if (err) return done(err);
                 Object.keys(files).forEach((file) => {
@@ -59,6 +62,7 @@ describe('metalsmith-preview', () => {
                     trim: true,
                 },
             }))
+            .use(debug())
             .build(function(err, files) {  // eslint-disable-line
                 if (err) return done(err);
                 Object.keys(files).forEach((file) => {
@@ -78,6 +82,7 @@ describe('metalsmith-preview', () => {
                     end: '{{ previewEnd }}',
                 },
             }))
+            .use(debug())
             .build(function(err, files) {  // eslint-disable-line
                 if (err) return done(err);
                 Object.keys(files).forEach((file) => {

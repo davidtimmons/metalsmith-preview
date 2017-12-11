@@ -11,9 +11,11 @@
   },
   "scripts": {
     "lint": "eslint --ignore-pattern .json --ext .js ./lib ./test",
-    "test": "mocha --check-leaks ./test"
+    "test": "mocha --check-leaks ./test",
+    "test:verbose": "DEBUG=metalsmith-preview yarn run test"
   },
   "dependencies": {
+    "debug": "3.1.x",
     "multimatch": "2.1.x"
   },
   "devDependencies": {
@@ -22,6 +24,7 @@
     "eslint-config-airbnb-base": "12.1.x",
     "eslint-plugin-import": "2.8.x",
     "metalsmith": "2.x",
+    "metalsmith-debug": "1.2.x",
     "mocha": "4.x",
     "rewire": "3.x",
     "sinon": "4.x"
