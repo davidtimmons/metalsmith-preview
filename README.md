@@ -1,5 +1,9 @@
 # metalsmith-preview
 
+[![npm version][version-badge]][version-url]
+[![build status][build-badge]][build-url]
+[![downloads][downloads-badge]][downloads-url]
+
 > A Metalsmith plugin for generating text previews.
 
 This plugin generates a customizable text preview for each source file. Previews can be generated
@@ -348,3 +352,11 @@ Extracts preview text ending at the final character before this marker.
 MIT
 
 **[⬆ back to top](#table-of-contents)**
+
+
+[build-badge]: https://travis-ci.org/davidtimmons/metalsmith-preview.svg
+[build-url]: https://travis-ci.org/davidtimmons/metalsmith-preview
+[downloads-badge]: https://img.shields.io/npm/dm/metalsmith-preview.svg
+[downloads-url]: https://www.npmjs.com/package/metalsmith-preview
+[version-badge]: https://img.shields.io/npm/v/metalsmith-preview.svg
+[version-url]: https://www.npmjs.com/package/metalsmith-preview
