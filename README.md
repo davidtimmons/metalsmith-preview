@@ -241,7 +241,7 @@ These are the available plugin options:
 |[marker.start](#markerstart)           |`string`              |`{{ previewStart }}`            |Generate a preview starting from this marker if present in the source file.|
 |[marker.end](#markerend)               |`string`              |`{{ previewEnd }}`              |Generate a preview ending at this marker if present in the source file.|
 
-```json
+```javascript
 {
   "plugins": {
     "metalsmith-preview": {
