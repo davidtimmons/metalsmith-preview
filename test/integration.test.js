@@ -11,12 +11,20 @@ const preview = require('..');
 
 
 describe('metalsmith-preview', () => {
+    const defaultIndicator = '...';
     const opts = Object.freeze({
-        pattern: '**/*',
-        key: 'preview',
-        ignoreExisting: true,
-        continueIndicator: '...',
-        strip: '',
+        // === DEFAULTS ===
+        // pattern: '**/*',
+        // key: 'preview',
+        // ignoreExisting: false,
+        // continueIndicator: defaultIndicator,
+        // strip: /\[|\]\[.*?\]|<.*?>|[*_<>]/g,
+        // words: 0,
+        // characters: 0,
+        // marker: {
+        //     start: '{{ previewStart }}',
+        //     end: '{{ previewEnd }}',
+        // },
     });
 
     it('should build a word preview', (done) => {
@@ -30,7 +38,7 @@ describe('metalsmith-preview', () => {
                 if (err) return done(err);
                 Object.keys(files).forEach((file) => {
                     const { preview: filePreview } = files[file];
-                    expect(filePreview).to.equal(`Lorem ipsum dolor${opts.continueIndicator}`);
+                    expect(filePreview).to.equal(`Lorem ipsum dolor${defaultIndicator}`);
                 });
                 done();
             });
@@ -47,7 +55,7 @@ describe('metalsmith-preview', () => {
                 if (err) return done(err);
                 Object.keys(files).forEach((file) => {
                     const { preview: filePreview } = files[file];
-                    expect(filePreview).to.equal(`Lorem ipsum ${opts.continueIndicator}`);
+                    expect(filePreview).to.equal(`Lorem ipsum ${defaultIndicator}`);
                 });
                 done();
             });
@@ -67,7 +75,7 @@ describe('metalsmith-preview', () => {
                 if (err) return done(err);
                 Object.keys(files).forEach((file) => {
                     const { preview: filePreview } = files[file];
-                    expect(filePreview).to.equal(`Lorem ipsum${opts.continueIndicator}`);
+                    expect(filePreview).to.equal(`Lorem ipsum${defaultIndicator}`);
                 });
                 done();
             });
@@ -87,7 +95,7 @@ describe('metalsmith-preview', () => {
                 if (err) return done(err);
                 Object.keys(files).forEach((file) => {
                     const { preview: filePreview } = files[file];
-                    const testPreview = `Etiam fermentum dignissim${opts.continueIndicator}`;
+                    const testPreview = `Etiam fermentum dignissim${defaultIndicator}`;
                     expect(filePreview).to.equal(testPreview);
                 });
                 done();
