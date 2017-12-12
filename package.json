@@ -1,6 +1,6 @@
 {
   "name": "metalsmith-preview",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "A Metalsmith plugin for generating text previews.",
   "keywords": [
     "metalsmith",
