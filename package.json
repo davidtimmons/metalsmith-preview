@@ -1,14 +1,17 @@
 {
   "name": "metalsmith-preview",
   "version": "1.0.2",
-  "description": "A Metalsmith plugin for generating text previews.",
+  "description": "A Metalsmith plugin for generating custom text previews.",
   "keywords": [
     "metalsmith",
     "plugin",
     "preview",
+    "excerpt",
     "snippet",
     "content",
-    "blog"
+    "blog",
+    "text",
+    "custom"
   ],
   "bugs": {
     "url": "https://github.com/davidtimmons/metalsmith-preview/issues"

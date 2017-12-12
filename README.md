@@ -4,7 +4,7 @@
 [![build status][build-badge]][build-url]
 [![downloads][downloads-badge]][downloads-url]
 
-> A Metalsmith plugin for generating text previews.
+> A Metalsmith plugin for generating custom text previews.
 
 This plugin generates a customizable text preview for each source file. Previews can be generated
 based on word count, character count, or custom markers placed within the source text. Each
