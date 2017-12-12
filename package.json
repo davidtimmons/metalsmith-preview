@@ -2,12 +2,31 @@
   "name": "metalsmith-preview",
   "version": "1.0.0",
   "description": "A Metalsmith plugin for generating text previews.",
-  "main": "lib/index.js",
-  "repository": "https://github.com/davidtimmons/metalsmith-preview.git",
-  "author": "David Timmons <github@timmons.io> (http://david.timmons.io)",
+  "keywords": [
+    "metalsmith",
+    "plugin",
+    "preview",
+    "snippet",
+    "content",
+    "blog"
+  ],
+  "bugs": {
+    "url": "https://github.com/davidtimmons/metalsmith-preview/issues"
+  },
   "license": "MIT",
-  "engines": {
-    "node": ">=6.4.0"
+  "author": {
+    "name": "David Timmons",
+    "email": "npm@timmons.io",
+    "url": "http://david.timmons.io"
+  },
+  "files": [
+    "lib/index.js",
+    "lib/preview.js"
+  ],
+  "main": "lib/index.js",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/davidtimmons/metalsmith-preview.git"
   },
   "scripts": {
     "lint": "eslint --ignore-pattern .json --ext .js ./lib ./test",
@@ -28,5 +47,8 @@
     "mocha": "4.x",
     "rewire": "3.x",
     "sinon": "4.x"
+  },
+  "engines": {
+    "node": ">=6.4.0"
   }
 }
