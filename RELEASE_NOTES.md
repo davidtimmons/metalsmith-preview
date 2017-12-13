@@ -1,3 +1,7 @@
+1.0.3 - December 12, 2017
+-------------------------
++ Repair README table format.
+
 1.0.2 - December 11, 2017
 -------------------------
 + Modify project summary and keywords.

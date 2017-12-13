@@ -226,20 +226,22 @@ Pass options to `metalsmith-preview` using the Metalsmith
 [CLI](https://github.com/segmentio/metalsmith#cli).
 These are the available plugin options:
 
-|Option                                 |Type                  |Default                         |Description|
-|---------------------------------------|----------------------|--------------------------------|-----------|
-|[pattern](#pattern)                    |`string[]|string`     |`**/*`                          |Pattern used to match file names.|
-|[key](#key)                            |`string`              |`preview`                       |Key used to assign the preview value.|
-|[ignoreExistingKey](#ignoreexistingkey)|`boolean`             |`false`                         |Whether to overwrite an existing preview key.|
-|[continueIndicator](#continueindicator)|`string`              |`...`                           |Value appended to the preview.|
-|[strip](#strip)                        |`regex|string`        |`/\[|\]\[.*?\]|\<.*?\>|[*_<>]/g`|Regular expression or string to strip from the preview.|
-|[words](#words)                        |`number|string`       |`0`                             |Word limit used to generate previews.|
-|[characters](#characters)              |`number|string|object`|`0`                             |Character limit used to generate previews; this can be used as a number or an object containing configuration options.|
-|[characters.count](#characterscount)   |`number|string`       |`0`                             |Character limit used to generate previews.|
-|[characters.trim](#characterstrim)     |`boolean`             |`false`                         |Whether to trim whitespace from the character preview.|
-|[marker](#marker)                      |`object`              |`preview`                       |Data marker(s) that indicate the desired preview.|
-|[marker.start](#markerstart)           |`string`              |`{{ previewStart }}`            |Generate a preview starting from this marker if present in the source file.|
-|[marker.end](#markerend)               |`string`              |`{{ previewEnd }}`              |Generate a preview ending at this marker if present in the source file.|
+|Option                                 |Type                    |Description|
+|---------------------------------------|------------------------|-----------|
+|[pattern](#pattern)                    |`string[]\|string`      |Pattern used to match file names.|
+|[key](#key)                            |`string`                |Key used to assign the preview value.|
+|[ignoreExistingKey](#ignoreexistingkey)|`boolean`               |Whether to overwrite an existing preview key.|
+|[continueIndicator](#continueindicator)|`string`                |Value appended to the preview.|
+|[strip](#strip)                        |`regex\|string`         |Regular expression or string to strip from the preview.|
+|[words](#words)                        |`number\|string`        |Word limit used to generate previews.|
+|[characters](#characters)              |`number\|string\|object`|Character limit used to generate previews; this can be used as a number or an object containing configuration options.|
+|[characters.count](#characterscount)   |`number\|string`        |Character limit used to generate previews.|
+|[characters.trim](#characterstrim)     |`boolean`               |Whether to trim whitespace from the character preview.|
+|[marker](#marker)                      |`object`                |Data marker(s) that indicate the desired preview.|
+|[marker.start](#markerstart)           |`string`                |Generate a preview starting from this marker if present in the source file.|
+|[marker.end](#markerend)               |`string`                |Generate a preview ending at this marker if present in the source file.|
+
+### Defaults
 
 ```javascript
 {
