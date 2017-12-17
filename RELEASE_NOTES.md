@@ -1,3 +1,8 @@
+1.0.4 - December 17, 2017
+-------------------------
++ Change README "back to top" anchor links to point to the project title.
++ Fix a typo in a code comment.
+
 1.0.3 - December 12, 2017
 -------------------------
 + Repair README table format.

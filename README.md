@@ -24,7 +24,7 @@ engine.
 $ npm install metalsmith-preview
 ```
 
-**[⬆ back to top](#table-of-contents)**
+**[⬆ back to top](#metalsmith-preview)**
 
 ## Examples
 
@@ -217,7 +217,7 @@ And results in `preview`:
 "phasellus aptent nunc nibh quis fusce...."
 ```
 
-**[⬆ back to top](#table-of-contents)**
+**[⬆ back to top](#metalsmith-preview)**
 
 ## Options
 
@@ -274,7 +274,7 @@ to a marker preview.
 #### pattern
 
 Fed directly into [multimatch](https://github.com/sindresorhus/multimatch) as the mechanism
-to select source files that should have a generated preview.
+to select source files.
 
 #### key
 
@@ -347,13 +347,13 @@ Extracts preview text starting from the first character after this marker.
 
 Extracts preview text ending at the final character before this marker.
 
-**[⬆ back to top](#table-of-contents)**
+**[⬆ back to top](#metalsmith-preview)**
 
 ## License
 
 MIT
 
-**[⬆ back to top](#table-of-contents)**
+**[⬆ back to top](#metalsmith-preview)**
 
 
 [build-badge]: https://travis-ci.org/davidtimmons/metalsmith-preview.svg
