@@ -8,6 +8,7 @@ const { expect } = require('chai');
 const Rewire = require('rewire');
 const Sinon = require('sinon'); // eslint-disable-line
 const plugin = Rewire('../lib/index');
+const _isTypeEqual = plugin.__get__('_isTypeEqual');
 const _setArgDefaults = plugin.__get__('_setArgDefaults');
 const { attachPreview, choosePreviewFunction } = require('../lib/preview');
 
@@ -17,6 +18,31 @@ const { attachPreview, choosePreviewFunction } = require('../lib/preview');
 ///////////
 
 describe('index.js', () => {
+    context('_isTypeEqual()', () => {
+        it('should check if the argument is the expected type', () => {
+            const testArgs =
+                [ [42, Number]
+                , [true, Boolean]
+                , ['hello world', String]
+                , [[], Array]
+                , [{}, Object]
+                ];
+
+            testArgs.forEach(testArg => {
+                const [value, type] = testArg;
+                const result = _isTypeEqual(value, type);
+                expect(result, `args: (${value}, ${type.name})`).to.be.true;
+            });
+        });
+
+        it('should check if the argument is an instance of an object', () => {
+            function MyType() {}
+            const arg = new MyType();
+            const result = _isTypeEqual(arg, MyType);
+            expect(result).to.be.true;
+        });
+    });
+
     context('_setArgDefaults()', () => {
         it('should fail when called without required arguments', () => {
             const fns =
