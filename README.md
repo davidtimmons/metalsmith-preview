@@ -358,7 +358,7 @@ MIT
 
 [build-badge]: https://travis-ci.org/davidtimmons/metalsmith-preview.svg
 [build-url]: https://travis-ci.org/davidtimmons/metalsmith-preview
-[downloads-badge]: https://img.shields.io/npm/dm/metalsmith-preview.svg
+[downloads-badge]: https://img.shields.io/npm/dt/metalsmith-preview.svg
 [downloads-url]: https://www.npmjs.com/package/metalsmith-preview
 [version-badge]: https://img.shields.io/npm/v/metalsmith-preview.svg
 [version-url]: https://www.npmjs.com/package/metalsmith-preview

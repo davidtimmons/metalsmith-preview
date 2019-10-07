@@ -27,7 +27,7 @@ describe('metalsmith-preview', () => {
         // },
     });
 
-    it('should build a word preview', (done) => {
+    it('should build a word preview', done => {
         Metalsmith('test/fixtures/words')
             .use(preview({
                 ...opts,
@@ -36,7 +36,7 @@ describe('metalsmith-preview', () => {
             .use(debug())
             .build(function(err, files) {  // eslint-disable-line
                 if (err) return done(err);
-                Object.keys(files).forEach((file) => {
+                Object.keys(files).forEach(file => {
                     const { preview: filePreview } = files[file];
                     expect(filePreview).to.equal(`Lorem ipsum dolor${defaultIndicator}`);
                 });
@@ -44,7 +44,7 @@ describe('metalsmith-preview', () => {
             });
     });
 
-    it('should build a character preview from a number', (done) => {
+    it('should build a character preview from a number', done => {
         Metalsmith('test/fixtures/characters')
             .use(preview({
                 ...opts,
@@ -53,7 +53,7 @@ describe('metalsmith-preview', () => {
             .use(debug())
             .build(function(err, files) {  // eslint-disable-line
                 if (err) return done(err);
-                Object.keys(files).forEach((file) => {
+                Object.keys(files).forEach(file => {
                     const { preview: filePreview } = files[file];
                     expect(filePreview).to.equal(`Lorem ipsum ${defaultIndicator}`);
                 });
@@ -61,7 +61,7 @@ describe('metalsmith-preview', () => {
             });
     });
 
-    it('should build a character preview from an object', (done) => {
+    it('should build a character preview from an object', done => {
         Metalsmith('test/fixtures/characters')
             .use(preview({
                 ...opts,
@@ -73,7 +73,7 @@ describe('metalsmith-preview', () => {
             .use(debug())
             .build(function(err, files) {  // eslint-disable-line
                 if (err) return done(err);
-                Object.keys(files).forEach((file) => {
+                Object.keys(files).forEach(file => {
                     const { preview: filePreview } = files[file];
                     expect(filePreview).to.equal(`Lorem ipsum${defaultIndicator}`);
                 });
@@ -81,7 +81,7 @@ describe('metalsmith-preview', () => {
             });
     });
 
-    it('should build a marker preview', (done) => {
+    it('should build a marker preview', done => {
         Metalsmith('test/fixtures/markers')
             .use(preview({
                 ...opts,
@@ -93,7 +93,7 @@ describe('metalsmith-preview', () => {
             .use(debug())
             .build(function(err, files) {  // eslint-disable-line
                 if (err) return done(err);
-                Object.keys(files).forEach((file) => {
+                Object.keys(files).forEach(file => {
                     const { preview: filePreview } = files[file];
                     const testPreview = `Etiam fermentum dignissim${defaultIndicator}`;
                     expect(filePreview).to.equal(testPreview);

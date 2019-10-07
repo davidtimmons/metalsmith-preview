@@ -177,7 +177,7 @@ describe('preview.js', () => {
                 , _ => createCharacterPreview(undefined, undefined, fileData)
                 ];
 
-            fns.forEach((fn) => {
+            fns.forEach(fn => {
                 expect(fn).to.throw('character count preview');
             });
         });
@@ -262,7 +262,7 @@ describe('preview.js', () => {
                 , createMarkerPreview(undefined, '< ok! >', undefined, fileData)
                 , createMarkerPreview('< ok? >', '< ok! >', undefined, fileData)
                 ];
-            results.forEach((result) => {
+            results.forEach(result => {
                 const { preview, contents } = result;
                 expect(preview).to.be.empty;
                 expect(contents.toString()).to.equal(fileData.contents.toString());
@@ -383,7 +383,7 @@ describe('preview.js', () => {
                 , _ => createWordPreview(undefined, undefined, fileData)
                 ];
 
-            fns.forEach((fn) => {
+            fns.forEach(fn => {
                 expect(fn).to.throw('word count preview');
             });
         });

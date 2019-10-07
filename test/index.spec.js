@@ -24,7 +24,7 @@ describe('index.js', () => {
                 , _ => _setArgDefaults(true)
                 , _ => _setArgDefaults(true, String)
                 ];
-            fns.forEach((fn) => {
+            fns.forEach(fn => {
                 expect(fn).to.throw();
             });
             expect(_ => _setArgDefaults(true, String, Number)).to.not.throw();

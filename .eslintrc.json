@@ -2,7 +2,7 @@
  * Linting rules extend and modify the Airbnb style guide.
  * See: https://github.com/airbnb/javascript
  */
- 
+
 {
     "extends": "airbnb-base",
     "plugins": ["import"],
@@ -13,6 +13,7 @@
     },
     "rules": {
         "array-bracket-spacing": ["off"], // Requires a missing option for my preferred style.
+        "arrow-parens": ["error", "as-needed"],
         "comma-dangle": ["error", {
             "arrays": "never", // Supports comma-first rule with multiline arrays.
             "objects": "always-multiline",
@@ -25,6 +26,7 @@
         "func-style": ["warn", "declaration", { "allowArrowFunctions": true }],
         "indent": ["off"], // Requires a missing option for my preferred style.
         "no-bitwise": ["error", { "allow": ["~"] }],
+        "no-else-return": ["error", { "allowElseIf": true }],
         "no-nested-ternary": ["off"], // Requires a missing option for my preferred style.
         "no-param-reassign": ["error", { "props": false }],
         "no-plusplus": ["error", { "allowForLoopAfterthoughts": true }],
@@ -44,6 +46,7 @@
         "object-shorthand": ["error", "properties", {
             "avoidQuotes": true
         }],
+        "operator-linebreak": ["off"],
         "prefer-const": ["error", { "destructuring": "all", "ignoreReadBeforeAssign": true }],
         "spaced-comment": ["error", "always", {
             "line": {
