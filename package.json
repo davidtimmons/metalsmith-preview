@@ -37,21 +37,21 @@
     "test:verbose": "DEBUG=metalsmith-preview yarn run test"
   },
   "dependencies": {
-    "debug": "^4.1.1",
-    "multimatch": "^4.0.0"
+    "debug": "^4.3.1",
+    "multimatch": "^5.0.0"
   },
   "devDependencies": {
-    "chai": "^4.2.0",
-    "eslint": "^6.5.1",
-    "eslint-config-airbnb-base": "^14.0.0",
-    "eslint-plugin-import": "^2.18.2",
+    "chai": "^4.3.0",
+    "eslint": "^7.21.0",
+    "eslint-config-airbnb-base": "^14.2.1",
+    "eslint-plugin-import": "^2.22.1",
     "metalsmith": "^2.3.0",
     "metalsmith-debug": "^1.2.0",
-    "mocha": "^6.2.1",
-    "rewire": "^4.0.1",
-    "sinon": "^7.5.0"
+    "mocha": "^8.3.0",
+    "rewire": "^5.0.0",
+    "sinon": "^9.2.4"
   },
   "engines": {
-    "node": ">=8.10.0"
+    "node": ">=10"
   }
 }

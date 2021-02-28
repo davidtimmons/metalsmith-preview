@@ -27,6 +27,7 @@
         "indent": ["off"], // Requires a missing option for my preferred style.
         "no-bitwise": ["error", { "allow": ["~"] }],
         "no-else-return": ["error", { "allowElseIf": true }],
+        "no-multiple-empty-lines": ["error", {"max": 2}],
         "no-nested-ternary": ["off"], // Requires a missing option for my preferred style.
         "no-param-reassign": ["error", { "props": false }],
         "no-plusplus": ["error", { "allowForLoopAfterthoughts": true }],
