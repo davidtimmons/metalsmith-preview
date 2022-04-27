@@ -22,6 +22,7 @@
             "functions": "never"
         }],
         "comma-style": ["error", "last", { "exceptions": { "ArrayExpression": true } }],
+        "default-param-last": ["warn"], // Requires substantial code restructuring.
         "func-names": ["error", "as-needed"],
         "func-style": ["warn", "declaration", { "allowArrowFunctions": true }],
         "indent": ["off"], // Requires a missing option for my preferred style.
